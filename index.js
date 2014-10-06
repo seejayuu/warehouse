@@ -23,17 +23,6 @@ function respond(promise, res) {
         });
 }
 
-function respond2(promise, res) {
-    promise
-        .then(function (error, result) {
-            res.send(JSON.stringify(result));
-        })
-        .fail(function (err) {
-            res.statusCode = err.code || 500;
-            res.send(String(err));
-        });
-}
-
 function _applyRoutes(app, name, store) {
     app.use(express.bodyParser());
 
@@ -44,7 +33,7 @@ function _applyRoutes(app, name, store) {
     });
 
     app.get(name+'/:id', function(req, res) {
-        respond2(store.get(req.params.id), res);
+        respond(store.get(req.params.id), res);
     });
 
     app.post(name, function(req, res) {
