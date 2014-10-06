@@ -23,13 +23,24 @@ function respond(promise, res) {
         });
 }
 
+function respond2(promise, res) {
+    promise
+        .then(function (error, result) {
+            res.send(JSON.stringify(result));
+        })
+        .fail(function (err) {
+            res.statusCode = err.code || 500;
+            res.send(String(err));
+        });
+}
+
 function _applyRoutes(app, name, store) {
     app.use(express.bodyParser());
 
     name = name.replace(/^\/?/, '/');
 
     app.get(name, function(req, res) {
-        respond(store.query(url.parse(req.url).query), res);
+        respond2(store.query(url.parse(req.url).query), res);
     });
 
     app.get(name+'/:id', function(req, res) {
