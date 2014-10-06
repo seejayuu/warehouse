@@ -40,11 +40,11 @@ function _applyRoutes(app, name, store) {
     name = name.replace(/^\/?/, '/');
 
     app.get(name, function(req, res) {
-        respond2(store.query(url.parse(req.url).query), res);
+        respond(store.query(url.parse(req.url).query), res);
     });
 
     app.get(name+'/:id', function(req, res) {
-        respond(store.get(req.params.id), res);
+        respond2(store.get(req.params.id), res);
     });
 
     app.post(name, function(req, res) {
