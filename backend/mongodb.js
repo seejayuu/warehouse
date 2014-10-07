@@ -1,4 +1,5 @@
 var Db = require('mongodb').Db,
+    ObjectId = require('mongodb').ObjectID,
     Connection = require('mongodb').Connection,
     Server = require('mongodb').Server,
     Q = require('q'),
@@ -205,7 +206,7 @@ var MongoStore = BaseBackend.BaseStore.extend(
         if (!isNaN(intKey) && intKey.toString() === key) {
             key = intKey;
         }
-        return ObjectId(key);
+        return new ObjectId(key);
     }
 });
 
