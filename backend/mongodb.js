@@ -128,6 +128,7 @@ var MongoStore = BaseBackend.BaseStore.extend(
 
     /** @method */
     put: function(object, directives) {
+        delete object['_id'];
         var key = this._getObjectKey(object, directives),
             selector = {};
         selector[this.keyPath] = key;
