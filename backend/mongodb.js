@@ -205,8 +205,7 @@ var MongoStore = BaseBackend.BaseStore.extend(
         if (!isNaN(intKey) && intKey.toString() === key) {
             key = intKey;
         }
-
-        return key;
+        return 'ObjectId("' + key + '")';
     }
 });
 
